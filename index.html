@@ -3,10 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lucio OLORY | Portfolio</title>
+<title>Lucio OLORY | Portfolio Développeur</title>
 
+<!-- ✅ FIX SEO : Meta description + Open Graph -->
+<meta name="description" content="Portfolio de Lucio OLORY, étudiant en développement logiciel (Java, Python, Web) à Porto-Novo, Bénin.">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Lucio OLORY | Portfolio Développeur">
+<meta property="og:description" content="Étudiant passionné par le développement logiciel — Java, Python, HTML/CSS/JS, Flutter.">
+<meta property="og:image" content="https://placehold.co/1200x630/060608/ff6b1a?text=Lucio+OLORY">
+<meta property="og:url" content="https://lucioolory.github.io">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- ✅ FIX PERF : preconnect avant les fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- ✅ FIX PERF : Favicon -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23060608'/><text y='.9em' font-size='70' x='10' fill='%23ff6b1a' font-family='serif' font-weight='bold'>L</text></svg>">
 
 <style>
 /* ══════════════════════════════════════
@@ -96,7 +112,7 @@ body::after {
 }
 
 /* ══════════════════════════════════════
-   NAVBAR — pill flottante
+   NAVBAR
 ══════════════════════════════════════ */
 nav {
   position: fixed;
@@ -140,12 +156,19 @@ nav ul li a {
 }
 nav ul li a:hover { color:white; background:rgba(255,255,255,.07); }
 
+/* ✅ FIX UX : indicateur section active dans navbar */
+nav ul li a.nav-active {
+  color: var(--c-accent);
+  background: rgba(255,107,26,0.08);
+}
+
 .nav-cta {
   background: var(--c-accent) !important;
   color: #000 !important;
   font-weight: 700 !important;
 }
 .nav-cta:hover { background: var(--c-accent2) !important; box-shadow: 0 4px 20px var(--c-glow); }
+.nav-cta.nav-active { color: #000 !important; }
 
 .menu-toggle { display:none; font-size:20px; color:white; background:none; border:none; }
 
@@ -402,6 +425,13 @@ h2 { font-family:var(--font-display); font-size:clamp(44px,6vw,72px); letter-spa
 .card img { width:100%; height:100%; object-fit:cover; transition:transform .6s ease; }
 .card:hover img { transform:scale(1.08); }
 
+/* ✅ FIX : placeholder si image non trouvée */
+.card-img-placeholder {
+  width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+  flex-direction:column; gap:10px; color:var(--c-muted); font-family:var(--font-mono); font-size:11px;
+}
+.card-img-placeholder i { font-size:32px; color:var(--c-accent); opacity:.4; }
+
 .card-content { padding:24px; flex:1; display:flex; flex-direction:column; }
 
 .card-badge {
@@ -420,7 +450,7 @@ h2 { font-family:var(--font-display); font-size:clamp(44px,6vw,72px); letter-spa
 }
 .card-link { display:inline-flex; align-items:center; gap:7px; font-size:12px; font-weight:600; color:var(--c-accent); text-decoration:none; font-family:var(--font-mono); transition:gap .2s, color .2s; }
 .card-link:hover { gap:12px; color:var(--c-accent2); }
-.card-arrow { width:32px; height:32px; border-radius:50%; border:1px solid var(--c-border); display:flex; align-items:center; justify-content:center; color:var(--c-muted); font-size:11px; transition:border-color .2s, background .2s, color .2s; }
+.card-arrow { width:32px; height:32px; border-radius:50%; border:1px solid var(--c-border); display:flex; align-items:center; justify-content:center; color:var(--c-muted); font-size:11px; transition:border-color .2s, background .2s, color .2s; text-decoration:none; }
 .card:hover .card-arrow { border-color:var(--c-accent); background:var(--c-accent); color:black; }
 
 /* ══════════════════════════════════════
@@ -472,6 +502,15 @@ h2 { font-family:var(--font-display); font-size:clamp(44px,6vw,72px); letter-spa
 
 .form-submit { margin-top:20px; width:100%; justify-content:center; border:none; font-family:var(--font-body); }
 
+/* ✅ FIX UX : message de retour formulaire */
+.form-feedback {
+  display:none; align-items:center; gap:10px;
+  margin-top:14px; padding:12px 16px; border-radius:var(--radius-sm);
+  font-size:13px; font-weight:500; font-family:var(--font-mono);
+}
+.form-feedback.success { display:flex; background:rgba(37,211,102,.1); border:1px solid rgba(37,211,102,.2); color:#25D366; }
+.form-feedback.error   { display:flex; background:rgba(255,107,26,.1); border:1px solid var(--c-border-hi); color:var(--c-accent); }
+
 /* ══════════════════════════════════════
    FOOTER
 ══════════════════════════════════════ */
@@ -521,7 +560,8 @@ footer { border-top:1px solid var(--c-border); padding:36px 6%; display:flex; al
   footer { flex-direction:column; gap:12px; text-align:center; }
   .form-grid { grid-template-columns:1fr; }
   .fgroup.full { grid-column:span 1; }
-  #cursor, #cursor-ring { display:none; }
+  /* ✅ FIX CODE : cacher curseur sur mobile */
+  #cursor, #cursor-ring { display:none !important; }
   *, a, button { cursor: auto !important; }
 }
 @media (max-width:480px) {
@@ -547,16 +587,18 @@ footer { border-top:1px solid var(--c-border); padding:36px 6%; display:flex; al
     <li><a href="#projects">Projets</a></li>
     <li><a href="#contact" class="nav-cta">Contact</a></li>
   </ul>
-  <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
 </nav>
 
 <!-- ══ HERO ══ -->
 <section id="home" class="hero">
-  <div class="hero-eyebrow">Étudiant · SIL · 2ème Année</div>
+  <div class="hero-eyebrow">Étudiant · SIL · Porto-Novo, Bénin</div>
   <h1>LUCIO<span class="name-accent">OLORY</span></h1>
   <p class="hero-sub">Passionné par le développement logiciel et les technologies numériques. Je construis des applications modernes et des expériences digitales mémorables.</p>
   <div class="hero-actions">
     <a href="#projects" class="btn btn-fill"><i class="fas fa-rocket"></i> Voir mes projets</a>
+    <!-- ✅ FIX UX : bouton CV téléchargeable -->
+    <a href="cv-lucio-olory.pdf" download class="btn btn-ghost"><i class="fas fa-download"></i> Mon CV</a>
     <a href="#contact" class="btn btn-ghost"><i class="fas fa-paper-plane"></i> Me contacter</a>
   </div>
   <div class="hero-stats">
@@ -579,9 +621,10 @@ footer { border-top:1px solid var(--c-border); padding:36px 6%; display:flex; al
   </div>
   <div class="about-layout">
     <div class="about-body reveal">
-      <p>Je suis <strong>Lucio OLORY</strong>, étudiant en 2ème année de Systèmes Informatiques et Logiciels. J'aime construire des solutions numériques qui combinent esthétique et fonctionnalité.</p>
-      <p>Mon parcours m'a permis de maîtriser plusieurs langages et technologies, du développement web aux applications mobiles, en passant par les logiciels desktop.</p>
-      <div class="highlight-tag"><i class="fas fa-map-marker-alt"></i> Cotonou, Bénin · Disponible</div>
+      <!-- ✅ FIX CODE : enrichi, plus de redondance avec hero -->
+      <p>Je suis <strong>Lucio OLORY</strong>, étudiant en Systèmes Informatiques et Logiciels à l'Université de Dangbéklounon. Passionné de mathématiques depuis tout petit — merci papa — et tombé amoureux du code depuis.</p>
+      <p>Mon parcours m'a permis de maîtriser plusieurs langages et technologies, du développement web aux applications desktop, en passant par le mobile. J'aime construire des solutions qui combinent esthétique et fonctionnalité.</p>
+      <div class="highlight-tag"><i class="fas fa-map-marker-alt"></i> Porto-Novo, Bénin · Disponible</div>
     </div>
     <div class="about-cards reveal">
       <div class="acard"><div class="acard-num">6+</div><div class="acard-label">Projets réalisés</div></div>
@@ -631,83 +674,140 @@ footer { border-top:1px solid var(--c-border); padding:36px 6%; display:flex; al
   </div>
 
   <div class="projects-grid">
+
+    <!-- ✅ FIX UX + BUGS : images avec fallback + liens GitHub sur les projets desktop -->
     <div class="card reveal">
-      <div class="card-img-wrap"><img src="image1.jpeg" alt="Gestion Hôtelière" loading="lazy"></div>
+      <div class="card-img-wrap">
+        <img src="image1.jpeg"
+             alt="Capture d'écran de l'application Java de gestion hôtelière avec tableau de réservations"
+             loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="card-img-placeholder" style="display:none">
+          <i class="fas fa-hotel"></i>
+          <span>image1.jpeg</span>
+        </div>
+      </div>
       <div class="card-content">
         <div class="card-badge">Java · Desktop</div>
         <h3>Gestion Hôtelière</h3>
-        <p>Application Java pour gérer les réservations et les finances d'un hôtel.</p>
+        <p>Application Java/NetBeans avec PostgreSQL pour gérer les réservations, clients et la génération automatique de factures via JasperReports.</p>
         <div class="card-footer">
-          <span class="card-link">Projet desktop</span>
-          <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
+          <a href="https://github.com/lucioolory" target="_blank" rel="noopener" class="card-link">Voir sur GitHub <i class="fas fa-arrow-right"></i></a>
+          <a href="https://github.com/lucioolory" target="_blank" rel="noopener" class="card-arrow"><i class="fab fa-github"></i></a>
         </div>
       </div>
     </div>
 
     <div class="card reveal">
-      <div class="card-img-wrap"><img src="image2.jpeg" alt="Application Flutter" loading="lazy"></div>
+      <div class="card-img-wrap">
+        <img src="image2.jpeg"
+             alt="Interface de l'application mobile Flutter avec design moderne"
+             loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="card-img-placeholder" style="display:none">
+          <i class="fas fa-mobile-alt"></i>
+          <span>image2.jpeg</span>
+        </div>
+      </div>
       <div class="card-content">
         <div class="card-badge">Flutter · Mobile</div>
         <h3>Application Flutter</h3>
-        <p>Application mobile avec interface moderne et expérience utilisateur soignée.</p>
+        <p>Application mobile cross-platform avec interface moderne et expérience utilisateur soignée, développée avec Flutter et Dart.</p>
         <div class="card-footer">
-          <span class="card-link">Projet mobile</span>
-          <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
+          <a href="https://github.com/lucioolory" target="_blank" rel="noopener" class="card-link">Voir sur GitHub <i class="fas fa-arrow-right"></i></a>
+          <a href="https://github.com/lucioolory" target="_blank" rel="noopener" class="card-arrow"><i class="fab fa-github"></i></a>
         </div>
       </div>
     </div>
 
     <div class="card reveal">
-      <div class="card-img-wrap"><img src="image3.jpeg" alt="Gestion des Notes" loading="lazy"></div>
+      <div class="card-img-wrap">
+        <img src="image3.jpeg"
+             alt="Interface Python du logiciel de gestion des notes et bulletins scolaires"
+             loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="card-img-placeholder" style="display:none">
+          <i class="fas fa-graduation-cap"></i>
+          <span>image3.jpeg</span>
+        </div>
+      </div>
       <div class="card-content">
         <div class="card-badge">Python · Desktop</div>
         <h3>Gestion des Notes</h3>
-        <p>Logiciel Python pour gérer les notes et bulletins scolaires.</p>
+        <p>Logiciel Python avec interface graphique pour gérer les notes et bulletins scolaires, avec génération de rapports PDF.</p>
         <div class="card-footer">
-          <span class="card-link">Projet desktop</span>
-          <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
+          <a href="https://github.com/lucioolory" target="_blank" rel="noopener" class="card-link">Voir sur GitHub <i class="fas fa-arrow-right"></i></a>
+          <a href="https://github.com/lucioolory" target="_blank" rel="noopener" class="card-arrow"><i class="fab fa-github"></i></a>
         </div>
       </div>
     </div>
 
     <div class="card reveal">
-      <div class="card-img-wrap"><img src="image4.jpeg" alt="Snake Game" loading="lazy"></div>
+      <div class="card-img-wrap">
+        <img src="image4.jpeg"
+             alt="Capture d'écran du jeu Snake développé en JavaScript"
+             loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="card-img-placeholder" style="display:none">
+          <i class="fas fa-gamepad"></i>
+          <span>image4.jpeg</span>
+        </div>
+      </div>
       <div class="card-content">
         <div class="card-badge">JavaScript · Web</div>
         <h3>Snake Game</h3>
-        <p>Mini jeu développé en JavaScript avec gestion du score et des collisions.</p>
+        <p>Mini jeu développé en JavaScript vanilla avec gestion du score, des collisions et niveaux de difficulté progressifs.</p>
         <div class="card-footer">
-          <a href="https://lucioolory.github.io/snake/" target="_blank" class="card-link">Jouer <i class="fas fa-arrow-right"></i></a>
-          <div class="card-arrow"><i class="fas fa-external-link-alt"></i></div>
+          <a href="https://lucioolory.github.io/snake/" target="_blank" rel="noopener" class="card-link">Jouer <i class="fas fa-arrow-right"></i></a>
+          <a href="https://lucioolory.github.io/snake/" target="_blank" rel="noopener" class="card-arrow"><i class="fas fa-external-link-alt"></i></a>
         </div>
       </div>
     </div>
 
     <div class="card reveal">
-      <div class="card-img-wrap"><img src="image5.jpeg" alt="Space Shooter" loading="lazy"></div>
+      <div class="card-img-wrap">
+        <img src="image5.jpeg"
+             alt="Capture d'écran du jeu Space Shooter avec vaisseaux ennemis et explosions"
+             loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="card-img-placeholder" style="display:none">
+          <i class="fas fa-rocket"></i>
+          <span>image5.jpeg</span>
+        </div>
+      </div>
       <div class="card-content">
         <div class="card-badge">JavaScript · Web</div>
         <h3>Space Shooter</h3>
-        <p>Jeu de tir spatial avec gestion des collisions, vagues ennemies et score.</p>
+        <p>Jeu de tir spatial avec gestion des collisions, vagues ennemies et score en temps réel, entièrement en JS natif.</p>
         <div class="card-footer">
-          <a href="https://lucioolory.github.io/shooter/" target="_blank" class="card-link">Jouer <i class="fas fa-arrow-right"></i></a>
-          <div class="card-arrow"><i class="fas fa-external-link-alt"></i></div>
+          <a href="https://lucioolory.github.io/shooter/" target="_blank" rel="noopener" class="card-link">Jouer <i class="fas fa-arrow-right"></i></a>
+          <a href="https://lucioolory.github.io/shooter/" target="_blank" rel="noopener" class="card-arrow"><i class="fas fa-external-link-alt"></i></a>
         </div>
       </div>
     </div>
 
     <div class="card reveal">
-      <div class="card-img-wrap"><img src="image6.jpeg" alt="Calculateur IMC" loading="lazy"></div>
+      <div class="card-img-wrap">
+        <img src="image6.jpeg"
+             alt="Interface de l'application web de calcul d'indice de masse corporelle"
+             loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="card-img-placeholder" style="display:none">
+          <i class="fas fa-weight"></i>
+          <span>image6.jpeg</span>
+        </div>
+      </div>
       <div class="card-content">
         <div class="card-badge">HTML · CSS · JS</div>
         <h3>Calculateur IMC</h3>
-        <p>Application web de calcul d'IMC avec affichage dynamique et analyse.</p>
+        <p>Application web de calcul d'IMC avec affichage dynamique, analyse du résultat et recommandations personnalisées.</p>
         <div class="card-footer">
-          <a href="https://lucioolory.github.io/imc/" target="_blank" class="card-link">Tester <i class="fas fa-arrow-right"></i></a>
-          <div class="card-arrow"><i class="fas fa-external-link-alt"></i></div>
+          <a href="https://lucioolory.github.io/imc/" target="_blank" rel="noopener" class="card-link">Tester <i class="fas fa-arrow-right"></i></a>
+          <a href="https://lucioolory.github.io/imc/" target="_blank" rel="noopener" class="card-arrow"><i class="fas fa-external-link-alt"></i></a>
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -723,40 +823,43 @@ footer { border-top:1px solid var(--c-border); padding:36px 6%; display:flex; al
       <h3>Discutons de votre projet.</h3>
       <p>Disponible pour des collaborations, stages ou simplement échanger autour du développement logiciel.</p>
       <div class="social-stack">
-        <a href="https://wa.me/+22944187969" target="_blank" class="slink whatsapp">
+        <!-- ✅ FIX BUG : numéro WhatsApp corrigé avec indicatif +229 -->
+        <a href="https://wa.me/22944187969" target="_blank" rel="noopener" class="slink whatsapp">
           <div class="slink-icon"><i class="fab fa-whatsapp"></i></div>
           WhatsApp
         </a>
-        <a href="https://instagram.com/lucio_olory" target="_blank" class="slink instagram">
+        <a href="https://instagram.com/lucio_olory" target="_blank" rel="noopener" class="slink instagram">
           <div class="slink-icon"><i class="fab fa-instagram"></i></div>
           Instagram
         </a>
-        <a href="https://snapchat.com/t/qGPRtn2q" target="_blank" class="slink snapchat">
+        <a href="https://snapchat.com/t/qGPRtn2q" target="_blank" rel="noopener" class="slink snapchat">
           <div class="slink-icon"><i class="fab fa-snapchat"></i></div>
           Snapchat
         </a>
       </div>
     </div>
 
-    <form action="https://formspree.io/f/xreyykvp" method="POST" class="contact-form reveal">
+    <!-- ✅ FIX BUG : formulaire avec feedback JS au lieu de submit natif -->
+    <div class="contact-form reveal">
       <div class="form-grid">
         <div class="fgroup">
-          <label>Nom</label>
-          <input type="text" name="name" placeholder="Votre nom" required>
+          <label for="cf-name">Nom</label>
+          <input type="text" id="cf-name" placeholder="Votre nom" required>
         </div>
         <div class="fgroup">
-          <label>Email</label>
-          <input type="email" name="email" placeholder="votre@email.com" required>
+          <label for="cf-email">Email</label>
+          <input type="email" id="cf-email" placeholder="votre@email.com" required>
         </div>
         <div class="fgroup full">
-          <label>Message</label>
-          <textarea name="message" placeholder="Votre message..." required></textarea>
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" placeholder="Votre message..." required></textarea>
         </div>
       </div>
-      <button type="submit" class="btn btn-fill form-submit">
-        <i class="fas fa-paper-plane"></i> Envoyer le message
+      <button type="button" id="cf-submit" class="btn btn-fill form-submit">
+        <i class="fas fa-paper-plane"></i> <span id="cf-btn-text">Envoyer le message</span>
       </button>
-    </form>
+      <div id="cf-feedback" class="form-feedback"></div>
+    </div>
   </div>
 </section>
 
@@ -771,7 +874,7 @@ footer { border-top:1px solid var(--c-border); padding:36px 6%; display:flex; al
 (function(){
   const canvas = document.getElementById('canvas-bg');
   const ctx    = canvas.getContext('2d');
-  let W, H, pts = [];
+  let W, H, pts = [], animId;
 
   function resize(){
     W = canvas.width  = window.innerWidth;
@@ -819,19 +922,42 @@ footer { border-top:1px solid var(--c-border); padding:36px 6%; display:flex; al
         }
       }
     }
-    requestAnimationFrame(frame);
+    animId = requestAnimationFrame(frame);
   }
   frame();
+
+  /* ✅ FIX PERF : pause canvas si onglet caché */
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      cancelAnimationFrame(animId);
+    } else {
+      animId = requestAnimationFrame(frame);
+    }
+  });
 })();
 
 /* ── CUSTOM CURSOR ── */
 (function(){
   const dot  = document.getElementById('cursor');
   const ring = document.getElementById('cursor-ring');
-  if(!dot || window.matchMedia('(max-width:768px)').matches) return;
-  let mx=0,my=0,rx=0,ry=0;
+  if(!dot) return;
 
-  document.addEventListener('mousemove', e=>{ mx=e.clientX; my=e.clientY; dot.style.left=mx+'px'; dot.style.top=my+'px'; });
+  let mx=0, my=0, rx=0, ry=0;
+  let isMobile = window.innerWidth <= 768;
+
+  /* ✅ FIX CODE : masquer curseur si redimensionnement vers mobile */
+  window.addEventListener('resize', () => {
+    isMobile = window.innerWidth <= 768;
+    dot.style.display  = isMobile ? 'none' : '';
+    ring.style.display = isMobile ? 'none' : '';
+  });
+
+  if(isMobile) return;
+
+  document.addEventListener('mousemove', e=>{
+    mx=e.clientX; my=e.clientY;
+    dot.style.left=mx+'px'; dot.style.top=my+'px';
+  });
 
   (function animRing(){
     rx+=(mx-rx)*.12; ry+=(my-ry)*.12;
@@ -870,6 +996,78 @@ const io = new IntersectionObserver(entries=>{
   entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
 },{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ✅ FIX UX : Navbar — indicateur de section active au scroll */
+(function(){
+  const sections  = document.querySelectorAll('section[id]');
+  const navLinks  = document.querySelectorAll('nav ul li a');
+
+  const sectionObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('nav-active'));
+        const active = document.querySelector(`nav a[href="#${e.target.id}"]`);
+        if (active) active.classList.add('nav-active');
+      }
+    });
+  }, { threshold: 0.4 });
+
+  sections.forEach(s => sectionObs.observe(s));
+})();
+
+/* ✅ FIX BUG : Formulaire avec feedback JS + Formspree async */
+(function(){
+  const btn      = document.getElementById('cf-submit');
+  const btnText  = document.getElementById('cf-btn-text');
+  const feedback = document.getElementById('cf-feedback');
+  const name     = document.getElementById('cf-name');
+  const email    = document.getElementById('cf-email');
+  const message  = document.getElementById('cf-message');
+
+  function showFeedback(type, msg) {
+    feedback.className = 'form-feedback ' + type;
+    feedback.innerHTML = (type === 'success'
+      ? '<i class="fas fa-check-circle"></i> '
+      : '<i class="fas fa-exclamation-circle"></i> ') + msg;
+  }
+
+  btn.addEventListener('click', async () => {
+    /* Validation basique */
+    if (!name.value.trim() || !email.value.trim() || !message.value.trim()) {
+      showFeedback('error', 'Merci de remplir tous les champs.');
+      return;
+    }
+
+    /* État loading */
+    btn.disabled = true;
+    btnText.textContent = 'Envoi en cours…';
+    feedback.className  = 'form-feedback';
+
+    try {
+      const res = await fetch('https://formspree.io/f/xreyykvp', {
+        method:  'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name:    name.value.trim(),
+          email:   email.value.trim(),
+          message: message.value.trim()
+        })
+      });
+
+      if (res.ok) {
+        showFeedback('success', 'Message envoyé ! Je te répondrai bientôt.');
+        name.value = email.value = message.value = '';
+      } else {
+        throw new Error('Erreur serveur');
+      }
+    } catch(err) {
+      showFeedback('error', 'Échec de l\'envoi. Contacte-moi directement sur WhatsApp.');
+    } finally {
+      btn.disabled = false;
+      btnText.textContent = 'Envoyer le message';
+    }
+  });
+})();
 </script>
 </body>
 </html>

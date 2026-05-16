@@ -569,6 +569,55 @@ footer { border-top:1px solid var(--c-border); padding:36px 6%; display:flex; al
   .contact-form { padding:24px; }
   .about-cards { grid-template-columns:1fr 1fr; }
 }
+/* ══════════════════════════════════════
+   SERVICES
+══════════════════════════════════════ */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+@media(max-width:600px){ .services-grid { grid-template-columns: 1fr; } }
+
+.scard {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform .3s var(--ease-spring), border-color .3s, box-shadow .3s;
+  position: relative;
+  overflow: hidden;
+}
+.scard::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background: radial-gradient(ellipse at top left, var(--c-glow), transparent 70%);
+  opacity:0;
+  transition: opacity .3s;
+}
+.scard:hover { transform: translateY(-6px); border-color: var(--c-border-hi); box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+.scard:hover::before { opacity: 1; }
+
+.scard-icon {
+  width: 48px; height: 48px;
+  background: rgba(255,107,26,0.1);
+  border: 1px solid rgba(255,107,26,0.2);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  color: var(--c-accent);
+}
+.scard h3 { font-family: var(--font-display); font-size: 22px; color: white; letter-spacing: .5px; }
+.scard p { font-size: 13px; color: var(--c-muted); line-height: 1.6; flex: 1; }
+.scard-price { font-family: var(--font-mono); font-size: 13px; color: var(--c-accent2); }
+.scard-price strong { font-size: 16px; }
+.scard-btn { margin-top: 4px; width: fit-content; font-size: 13px; padding: 10px 20px; }
+
 </style>
 </head>
 <body>
@@ -584,6 +633,7 @@ footer { border-top:1px solid var(--c-border); padding:36px 6%; display:flex; al
     <li><a href="#home">Accueil</a></li>
     <li><a href="#about">À propos</a></li>
     <li><a href="#skills">Compétences</a></li>
+    <li><a href="#services">Services</a></li>
     <li><a href="#projects">Projets</a></li>
     <li><a href="#contact" class="nav-cta">Contact</a></li>
   </ul>
@@ -592,14 +642,13 @@ footer { border-top:1px solid var(--c-border); padding:36px 6%; display:flex; al
 
 <!-- ══ HERO ══ -->
 <section id="home" class="hero">
-  <div class="hero-eyebrow">Étudiant · SIL · Porto-Novo, Bénin</div>
+  <div class="hero-eyebrow">Développeur Web & Desktop · Porto-Novo, Bénin</div>
   <h1>LUCIO<span class="name-accent">OLORY</span></h1>
-  <p class="hero-sub">Passionné par le développement logiciel et les technologies numériques. Je construis des applications modernes et des expériences digitales mémorables.</p>
+  <p class="hero-sub">Je crée des sites web, applications et logiciels de gestion pour les entreprises et particuliers. Livraison rapide, tarifs accessibles.</p>
   <div class="hero-actions">
-    <a href="#projects" class="btn btn-fill"><i class="fas fa-rocket"></i> Voir mes projets</a>
-    <!-- ✅ FIX UX : bouton CV téléchargeable -->
+    <a href="https://wa.me/22944187969?text=Bonjour%20Lucio%2C%20je%20voudrais%20un%20devis%20pour%20mon%20projet." target="_blank" class="btn btn-fill"><i class="fas fa-file-invoice-dollar"></i> Demander un devis</a>
+    <a href="#projects" class="btn btn-ghost"><i class="fas fa-rocket"></i> Voir mes projets</a>
     <a href="https://drive.google.com/uc?export=download&id=1pHMpa9dVdMb2eAmSI7DBAUjce-FpZrxC" download class="btn btn-ghost"><i class="fas fa-download"></i> Mon CV</a>
-    <a href="#contact" class="btn btn-ghost"><i class="fas fa-paper-plane"></i> Me contacter</a>
   </div>
   <div class="hero-stats">
     <div class="hstat"><div class="hstat-num">6+</div><div class="hstat-label">Projets</div></div>
@@ -663,6 +712,49 @@ footer { border-top:1px solid var(--c-border); padding:36px 6%; display:flex; al
       <div class="tool linux"><i class="fa-brands fa-linux"></i> Linux</div>
       <div class="tool figma"><i class="fa-brands fa-figma"></i> Figma</div>
     </div>
+  </div>
+</section>
+
+<!-- ══ SERVICES ══ -->
+<section id="services">
+  <div class="section-head reveal">
+    <div class="kicker">Ce que je propose</div>
+    <h2>Mes<br>services</h2>
+  </div>
+  <div class="services-grid">
+
+    <div class="scard reveal">
+      <div class="scard-icon"><i class="fas fa-globe"></i></div>
+      <h3>Site Web Vitrine</h3>
+      <p>Un site professionnel pour présenter votre activité, attirer des clients et être visible sur Google.</p>
+      <div class="scard-price">À partir de <strong>15 000 FCFA</strong></div>
+      <a href="https://wa.me/22944187969?text=Bonjour%20Lucio%2C%20je%20veux%20un%20site%20vitrine." target="_blank" class="btn btn-fill scard-btn"><i class="fab fa-whatsapp"></i> Commander</a>
+    </div>
+
+    <div class="scard reveal">
+      <div class="scard-icon"><i class="fas fa-database"></i></div>
+      <h3>Application de Gestion</h3>
+      <p>Logiciel sur mesure pour gérer vos stocks, clients, étudiants, réservations ou factures.</p>
+      <div class="scard-price">À partir de <strong>25 000 FCFA</strong></div>
+      <a href="https://wa.me/22944187969?text=Bonjour%20Lucio%2C%20je%20veux%20une%20application%20de%20gestion." target="_blank" class="btn btn-fill scard-btn"><i class="fab fa-whatsapp"></i> Commander</a>
+    </div>
+
+    <div class="scard reveal">
+      <div class="scard-icon"><i class="fas fa-shopping-cart"></i></div>
+      <h3>Site E-commerce</h3>
+      <p>Boutique en ligne avec catalogue, panier et paiement pour vendre vos produits sur internet.</p>
+      <div class="scard-price">À partir de <strong>35 000 FCFA</strong></div>
+      <a href="https://wa.me/22944187969?text=Bonjour%20Lucio%2C%20je%20veux%20une%20boutique%20en%20ligne." target="_blank" class="btn btn-fill scard-btn"><i class="fab fa-whatsapp"></i> Commander</a>
+    </div>
+
+    <div class="scard reveal">
+      <div class="scard-icon"><i class="fas fa-paint-brush"></i></div>
+      <h3>Retouche & Amélioration</h3>
+      <p>Votre site est déjà en ligne mais il a besoin d'être modernisé ou corrigé ? Je m'en charge.</p>
+      <div class="scard-price">À partir de <strong>8 000 FCFA</strong></div>
+      <a href="https://wa.me/22944187969?text=Bonjour%20Lucio%2C%20je%20veux%20am%C3%A9liorer%20mon%20site." target="_blank" class="btn btn-fill scard-btn"><i class="fab fa-whatsapp"></i> Commander</a>
+    </div>
+
   </div>
 </section>
 
@@ -821,7 +913,7 @@ footer { border-top:1px solid var(--c-border); padding:36px 6%; display:flex; al
   <div class="contact-layout">
     <div class="contact-left reveal">
       <h3>Discutons de votre projet.</h3>
-      <p>Disponible pour des collaborations, stages ou simplement échanger autour du développement logiciel.</p>
+      <p>Vous avez un projet web, une appli ou un logiciel en tête ? Contactez-moi sur WhatsApp pour un devis gratuit. Réponse rapide garantie 🚀</p>
       <div class="social-stack">
         <!-- ✅ FIX BUG : numéro WhatsApp corrigé avec indicatif +229 -->
         <a href="https://wa.me/22944187969" target="_blank" rel="noopener" class="slink whatsapp">

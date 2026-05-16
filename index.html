@@ -599,7 +599,10 @@ footer { border-top:1px solid var(--c-border); padding:36px 6%; display:flex; al
   background: radial-gradient(ellipse at top left, var(--c-glow), transparent 70%);
   opacity:0;
   transition: opacity .3s;
+  pointer-events: none;
+  z-index: 0;
 }
+.scard > * { position: relative; z-index: 1; }
 .scard:hover { transform: translateY(-6px); border-color: var(--c-border-hi); box-shadow: 0 20px 60px rgba(0,0,0,.5); }
 .scard:hover::before { opacity: 1; }
 

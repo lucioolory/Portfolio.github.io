@@ -505,6 +505,7 @@ body.light-mode .wa-float-label{background:#ffffff;color:#1a1a2e;}
   </ul>
   <div class="nav-extras">
     <button class="nav-toggle-btn" id="theme-toggle" title="Changer le thème"><i class="fas fa-sun"></i></button>
+    <button class="nav-toggle-btn" id="lang-toggle" title="Switch language">FR</button>
   </div>
   <button class="menu-toggle" id="menuToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
 </nav>
@@ -1295,82 +1296,244 @@ window.addEventListener('load', () => {
   });
 })();
 
-// LANGUE FR/EN
-const translations = {
-  fr: {
-    nav_home:'Accueil', nav_about:'À propos', nav_skills:'Compétences',
-    nav_services:'Services', nav_projects:'Projets', nav_devis:'Devis',
-    nav_testi:'Avis', nav_faq:'FAQ', nav_contact:'Contact',
-    hero_badge:'Disponible pour des projets',
-    hero_eyebrow:'Développeur Web & Desktop · Porto-Novo, Bénin',
-    hero_sub:'Je crée des sites web, applications et logiciels de gestion pour les entreprises et particuliers. Livraison rapide, tarifs accessibles.',
-    btn_devis:'Demander un devis', btn_projects:'Voir mes projets', btn_cv:'Mon CV',
-    about_kicker:'Qui suis-je', about_title:'À propos<br>de moi',
-    skills_kicker:'Savoir-faire', skills_title:'Compétences<br>& Outils',
-    services_kicker:'Ce que je propose', services_title:'Mes<br>services',
-    projects_kicker:'Réalisations', projects_title:'Mes<br>projets',
-    devis_kicker:'Estimez votre projet', devis_title:'Calculateur<br>de devis',
-    testi_kicker:"Ce qu'on dit de moi", testi_title:'Avis &<br>témoignages',
-    faq_kicker:'Questions fréquentes', faq_title:'FAQ',
-    contact_kicker:'Me rejoindre', contact_title:'Contactez-<br>moi',
-    available:'Disponible pour des projets',
-    maîtrise:'Niveau de maîtrise',
-  },
-  en: {
-    nav_home:'Home', nav_about:'About', nav_skills:'Skills',
-    nav_services:'Services', nav_projects:'Projects', nav_devis:'Quote',
-    nav_testi:'Reviews', nav_faq:'FAQ', nav_contact:'Contact',
-    hero_badge:'Available for projects',
-    hero_eyebrow:'Web & Desktop Developer · Porto-Novo, Benin',
-    hero_sub:'I build websites, apps and management software for businesses and individuals. Fast delivery, affordable rates.',
-    btn_devis:'Get a free quote', btn_projects:'View my projects', btn_cv:'My Resume',
-    about_kicker:'Who am I', about_title:'About<br>me',
-    skills_kicker:'Know-how', skills_title:'Skills<br>& Tools',
-    services_kicker:'What I offer', services_title:'My<br>services',
-    projects_kicker:'Portfolio', projects_title:'My<br>projects',
-    devis_kicker:'Estimate your project', devis_title:'Quote<br>calculator',
-    testi_kicker:'What people say', testi_title:'Reviews &<br>testimonials',
-    faq_kicker:'Common questions', faq_title:'FAQ',
-    contact_kicker:'Get in touch', contact_title:'Contact<br>me',
-    available:'Available for projects',
-    maîtrise:'Skill level',
-  }
-};
-
+// LANGUE FR/EN — traduction complète du site
 (function(){
   let lang = 'fr';
   const btn = document.getElementById('lang-toggle');
 
+  const T = {
+    fr: {
+      // Navbar
+      nav:['Accueil','À propos','Compétences','Services','Projets','Devis','Avis','FAQ','Contact'],
+      // Hero
+      badge:'Disponible pour des projets',
+      eyebrow:'Développeur Web & Desktop · Porto-Novo, Bénin',
+      sub:'Je crée des sites web, applications et logiciels de gestion pour les entreprises et particuliers. Livraison rapide, tarifs accessibles.',
+      btn1:'Demander un devis', btn2:'Voir mes projets', btn3:'Mon CV',
+      // Stats
+      stats:['Projets','Langages','Années','Curiosité'],
+      // About
+      k_about:'Qui suis-je', t_about:'À propos<br>de moi',
+      about1:'Je suis <strong>Lucio OLORY</strong>, étudiant en Systèmes Informatiques et Logiciels à l\'Université de Dangbéklounon. Passionné de mathématiques depuis tout petit — merci papa — et tombé amoureux du code depuis.',
+      about2:'Mon parcours m\'a permis de maîtriser plusieurs langages et technologies, du développement web aux applications desktop, en passant par le mobile. J\'aime construire des solutions qui combinent esthétique et fonctionnalité.',
+      available_tag:'Porto-Novo, Bénin · Disponible',
+      acard:['Projets réalisés','Langages','Années d\'études','Curiosité'],
+      // Skills
+      k_skills:'Savoir-faire', t_skills:'Compétences<br>& Outils',
+      lang_label:'Langages & Frameworks', env_label:'Environnements', level_label:'Niveau de maîtrise',
+      // Services
+      k_services:'Ce que je propose', t_services:'Mes<br>services',
+      s_detail:'Voir les détails',
+      s1:['Site Web Vitrine','Un site professionnel pour présenter votre activité, attirer des clients et être visible sur Google.'],
+      s2:['Application de Gestion','Logiciel sur mesure pour gérer vos stocks, clients, étudiants, réservations ou factures.'],
+      s3:['CV en Ligne','Un portfolio ou CV web moderne et professionnel pour booster votre présence en ligne.'],
+      s4:['Retouche & Amélioration','Votre site est déjà en ligne mais il a besoin d\'être modernisé ou corrigé ? Je m\'en charge.'],
+      // Projects
+      k_projects:'Réalisations', t_projects:'Mes<br>projets',
+      p_github:'Voir sur GitHub', p_play:'Jouer', p_test:'Tester',
+      p1:['Gestion Hôtelière','Application Java/NetBeans avec PostgreSQL pour gérer les réservations, clients et la génération automatique de factures via JasperReports.'],
+      p2:['Application Flutter','Application mobile cross-platform avec interface moderne et expérience utilisateur soignée, développée avec Flutter et Dart.'],
+      p3:['Gestion des Étudiants','Application web PHP/MySQL avec CRUD complet pour gérer les étudiants, leurs inscriptions et leur suivi académique, avec validation JS et messages flash.'],
+      p4:['Snake Game','Mini jeu développé en JavaScript vanilla avec gestion du score, des collisions et niveaux de difficulté progressifs.'],
+      p5:['Space Shooter','Jeu de tir spatial avec gestion des collisions, vagues ennemies et score en temps réel, entièrement en JS natif.'],
+      p6:['Calculateur IMC','Application web de calcul d\'IMC avec affichage dynamique, analyse du résultat et recommandations personnalisées.'],
+      // Calculateur
+      k_devis:'Estimez votre projet', t_devis:'Calculateur<br>de devis',
+      calc_q1:'Quel type de projet ?', calc_q2:'Combien de pages / écrans ?', calc_q3:'Options supplémentaires', calc_q4:'Délai souhaité',
+      calc_opts1:['Site Vitrine','App de Gestion','CV en Ligne','Retouche'],
+      calc_opts2:['1 — 3 pages','4 — 6 pages','7+ pages'],
+      calc_opts3:['Logo inclus','Formulaire contact','Galerie photos','Dashboard admin'],
+      calc_opts4:['Normal (7-14 jours)','Urgent (3-5 jours)'],
+      calc_label:'Estimation de votre projet', calc_note:'Devis gratuit · Prix négociable',
+      calc_empty:'← Configurez votre projet', calc_btn:'Demander ce devis',
+      // Testimonials
+      k_testi:"Ce qu'on dit de moi", t_testi:'Avis &<br>témoignages',
+      testi1:['Lucio a livré notre site vitrine en moins d\'une semaine. Design moderne, responsive, exactement ce qu\'on voulait. Je recommande vivement !','Gérant · Boutique Porto-Novo'],
+      testi2:['Très professionnel et réactif. Il a compris nos besoins rapidement et l\'application de gestion fonctionne parfaitement. Excellent travail !','Directrice · École privée Cotonou'],
+      testi3:['Mon CV en ligne est magnifique ! Plusieurs recruteurs m\'ont contacté après l\'avoir vu. Lucio a un vrai sens du design et des détails.','Ingénieur · Recherche d\'emploi'],
+      // FAQ
+      k_faq:'Questions fréquentes', t_faq:'FAQ',
+      faq_q:['Comment se passe une commande ?','Comment se fait le paiement ?','Quels sont vos délais de livraison ?','Travaillez-vous à distance ?','Que se passe-t-il après la livraison ?','Les prix sont-ils négociables ?'],
+      faq_a:["C'est simple : vous me contactez sur WhatsApp, on discute de votre projet, je vous envoie un devis gratuit. Une fois validé, je commence le développement et vous livrez en temps et en heure. Pas de surprise.","Le paiement se fait via Mobile Money (MTN ou Moov) en deux fois : 50% à la commande pour démarrer le travail, et 50% à la livraison quand vous êtes satisfait.","Cela dépend du projet : un CV en ligne c'est 1 à 3 jours, un site vitrine 3 à 7 jours, une application de gestion 7 à 21 jours selon la complexité.","Oui, je travaille 100% à distance. Toute la communication se fait par WhatsApp, et je livre les fichiers en ligne. Vous n'avez pas besoin de vous déplacer.","Je vous accompagne après la livraison avec une période de support incluse (1 à 2 mois selon le service). Les petites modifications sont prises en charge sans frais.","Oui ! Les tarifs affichés sont des prix de base. Si vous avez un budget précis, contactez-moi et on trouvera une solution adaptée ensemble."],
+      // Contact
+      k_contact:'Me rejoindre', t_contact:'Contactez-<br>moi',
+      contact_title:'Discutons de votre projet.',
+      contact_sub:'Vous avez un projet web, une appli ou un logiciel en tête ? Contactez-moi sur WhatsApp pour un devis gratuit. Réponse rapide garantie 🚀',
+      f_name:'Nom', f_email:'Email', f_msg:'Message',
+      f_ph_name:'Votre nom', f_ph_email:'votre@email.com', f_ph_msg:'Votre message...',
+      f_btn:'Envoyer le message',
+    },
+    en: {
+      nav:['Home','About','Skills','Services','Projects','Quote','Reviews','FAQ','Contact'],
+      badge:'Available for projects',
+      eyebrow:'Web & Desktop Developer · Porto-Novo, Benin',
+      sub:'I build websites, apps and management software for businesses and individuals. Fast delivery, affordable rates.',
+      btn1:'Get a free quote', btn2:'View my projects', btn3:'My Resume',
+      stats:['Projects','Languages','Years','Curiosity'],
+      k_about:'Who am I', t_about:'About<br>me',
+      about1:'I am <strong>Lucio OLORY</strong>, a Software & Information Systems student at the University of Dangbéklounon. Passionate about mathematics from an early age — thanks dad — and fell in love with coding since.',
+      about2:'My journey has allowed me to master several languages and technologies, from web development to desktop applications and mobile. I love building solutions that combine aesthetics and functionality.',
+      available_tag:'Porto-Novo, Benin · Available',
+      acard:['Projects done','Languages','Years of study','Curiosity'],
+      k_skills:'Know-how', t_skills:'Skills<br>& Tools',
+      lang_label:'Languages & Frameworks', env_label:'Environments', level_label:'Skill level',
+      k_services:'What I offer', t_services:'My<br>services',
+      s_detail:'See details',
+      s1:['Website','A professional website to showcase your business, attract clients and be visible on Google.'],
+      s2:['Management App','Custom software to manage your stock, clients, students, bookings or invoices.'],
+      s3:['Online CV','A modern and professional web portfolio or CV to boost your online presence.'],
+      s4:['Redesign & Fix','Your site is already online but needs modernizing or fixing? I\'ll take care of it.'],
+      k_projects:'Portfolio', t_projects:'My<br>projects',
+      p_github:'View on GitHub', p_play:'Play', p_test:'Try it',
+      p1:['Hotel Management','Java/NetBeans app with PostgreSQL to manage reservations, clients and automatic invoice generation via JasperReports.'],
+      p2:['Flutter App','Cross-platform mobile app with modern UI and polished user experience, built with Flutter and Dart.'],
+      p3:['Student Management','PHP/MySQL web app with full CRUD to manage students, enrollments and academic tracking, with JS validation and flash messages.'],
+      p4:['Snake Game','Mini game built in vanilla JavaScript with score tracking, collision detection and progressive difficulty levels.'],
+      p5:['Space Shooter','Space shooter game with collision detection, enemy waves and real-time score, entirely in native JS.'],
+      p6:['BMI Calculator','Web app for BMI calculation with dynamic display, result analysis and personalized recommendations.'],
+      k_devis:'Estimate your project', t_devis:'Quote<br>calculator',
+      calc_q1:'What type of project?', calc_q2:'How many pages / screens?', calc_q3:'Additional options', calc_q4:'Desired deadline',
+      calc_opts1:['Website','Management App','Online CV','Redesign'],
+      calc_opts2:['1 — 3 pages','4 — 6 pages','7+ pages'],
+      calc_opts3:['Logo included','Contact form','Photo gallery','Admin dashboard'],
+      calc_opts4:['Normal (7-14 days)','Urgent (3-5 days)'],
+      calc_label:'Project estimate', calc_note:'Free quote · Negotiable price',
+      calc_empty:'← Configure your project', calc_btn:'Request this quote',
+      k_testi:'What people say', t_testi:'Reviews &<br>testimonials',
+      testi1:['Lucio delivered our website in less than a week. Modern design, responsive, exactly what we wanted. Highly recommended!','Owner · Boutique Porto-Novo'],
+      testi2:['Very professional and responsive. He understood our needs quickly and the management app works perfectly. Excellent work!','Director · Private school Cotonou'],
+      testi3:['My online CV looks amazing! Several recruiters contacted me after seeing it. Lucio has a real sense of design and detail.','Engineer · Job seeking'],
+      k_faq:'Common questions', t_faq:'FAQ',
+      faq_q:['How does an order work?','How is payment made?','What are your delivery times?','Do you work remotely?','What happens after delivery?','Are prices negotiable?'],
+      faq_a:["Simple: contact me on WhatsApp, we discuss your project, I send you a free quote. Once validated, I start development and deliver on time. No surprises.","Payment is via Mobile Money (MTN or Moov) in two installments: 50% when ordering to start work, and 50% on delivery when you're satisfied.","It depends on the project: an online CV takes 1 to 3 days, a website 3 to 7 days, a management app 7 to 21 days depending on complexity.","Yes, I work 100% remotely. All communication is via WhatsApp, and I deliver files online. You don't need to travel.","I support you after delivery with an included support period (1 to 2 months depending on the service). Minor modifications are handled at no extra cost.","Yes! The displayed prices are base prices. If you have a specific budget, contact me and we'll find a suitable solution together."],
+      k_contact:'Get in touch', t_contact:'Contact<br>me',
+      contact_title:'Let\'s discuss your project.',
+      contact_sub:'Do you have a web project, an app or software in mind? Contact me on WhatsApp for a free quote. Fast response guaranteed 🚀',
+      f_name:'Name', f_email:'Email', f_msg:'Message',
+      f_ph_name:'Your name', f_ph_email:'your@email.com', f_ph_msg:'Your message...',
+      f_btn:'Send message',
+    }
+  };
+
   function applyLang(t) {
-    // Navbar links — tous
-    document.querySelectorAll('a[href="#home"]').forEach(el => el.textContent = t.nav_home);
-    document.querySelectorAll('a[href="#about"]').forEach(el => el.textContent = t.nav_about);
-    document.querySelectorAll('a[href="#skills"]').forEach(el => el.textContent = t.nav_skills);
-    document.querySelectorAll('a[href="#services"]').forEach(el => el.textContent = t.nav_services);
-    document.querySelectorAll('a[href="#projects"]').forEach(el => el.textContent = t.nav_projects);
-    document.querySelectorAll('a[href="#devis"]').forEach(el => el.textContent = t.nav_devis);
-    document.querySelectorAll('a[href="#testimonials"]').forEach(el => el.textContent = t.nav_testi);
-    document.querySelectorAll('a[href="#faq"]').forEach(el => el.textContent = t.nav_faq);
-    document.querySelectorAll('a[href="#contact"]').forEach(el => { if(!el.classList.contains('nav-cta')) el.textContent = t.nav_contact; else el.textContent = t.nav_contact; });
+    // Navbar
+    const navLinks = document.querySelectorAll('#nav-menu li a');
+    navLinks.forEach((a, i) => { if(t.nav[i]) a.textContent = t.nav[i]; });
 
     // Hero
-    document.querySelector('.available-badge').innerHTML = `<div class="available-dot"></div> ${t.hero_badge}`;
-    document.querySelector('.hero-eyebrow').textContent = t.hero_eyebrow;
-    document.querySelector('.hero-sub').textContent = t.hero_sub;
+    document.querySelector('.available-badge').innerHTML = `<div class="available-dot"></div> ${t.badge}`;
+    document.querySelector('.hero-eyebrow').textContent = t.eyebrow;
+    document.querySelector('.hero-sub').textContent = t.sub;
+    const hBtns = document.querySelectorAll('.hero-actions .btn');
+    if(hBtns[0]) hBtns[0].innerHTML = `<i class="fas fa-file-invoice-dollar"></i> ${t.btn1}`;
+    if(hBtns[1]) hBtns[1].innerHTML = `<i class="fas fa-rocket"></i> ${t.btn2}`;
+    if(hBtns[2]) hBtns[2].innerHTML = `<i class="fas fa-download"></i> ${t.btn3}`;
 
-    // Boutons hero
-    const heroBtns = document.querySelectorAll('.hero-actions .btn');
-    if(heroBtns[0]) heroBtns[0].innerHTML = `<i class="fas fa-file-invoice-dollar"></i> ${t.btn_devis}`;
-    if(heroBtns[1]) heroBtns[1].innerHTML = `<i class="fas fa-rocket"></i> ${t.btn_projects}`;
-    if(heroBtns[2]) heroBtns[2].innerHTML = `<i class="fas fa-download"></i> ${t.btn_cv}`;
+    // Stats labels
+    const statLabels = document.querySelectorAll('.hstat-label');
+    statLabels.forEach((el, i) => { if(t.stats[i]) el.textContent = t.stats[i]; });
+
+    // About
+    document.querySelector('#about .kicker').textContent = t.k_about;
+    document.querySelector('#about h2').innerHTML = t.t_about;
+    const aboutPs = document.querySelectorAll('.about-body p');
+    if(aboutPs[0]) aboutPs[0].innerHTML = t.about1;
+    if(aboutPs[1]) aboutPs[1].innerHTML = t.about2;
+    document.querySelector('.highlight-tag').innerHTML = `<i class="fas fa-map-marker-alt"></i> ${t.available_tag}`;
+    const acardLabels = document.querySelectorAll('.acard-label');
+    acardLabels.forEach((el, i) => { if(t.acard[i]) el.textContent = t.acard[i]; });
+
+    // Skills
+    document.querySelector('#skills .kicker').textContent = t.k_skills;
+    document.querySelector('#skills h2').innerHTML = t.t_skills;
+    const blockTitles = document.querySelectorAll('.block-title');
+    if(blockTitles[0]) blockTitles[0].firstChild.textContent = t.lang_label;
+    if(blockTitles[1]) blockTitles[1].firstChild.textContent = t.env_label;
+    if(blockTitles[2]) blockTitles[2].firstChild.textContent = t.level_label;
+
+    // Services
+    document.querySelector('#services .kicker').textContent = t.k_services;
+    document.querySelector('#services h2').innerHTML = t.t_services;
+    const scards = document.querySelectorAll('.scard');
+    const sData = [t.s1, t.s2, t.s3, t.s4];
+    scards.forEach((card, i) => {
+      if(!sData[i]) return;
+      card.querySelector('h3').textContent = sData[i][0];
+      card.querySelector('p').textContent = sData[i][1];
+      const detailBtn = card.querySelector('.scard-btn');
+      if(detailBtn) detailBtn.innerHTML = `<i class="fas fa-eye"></i> ${t.s_detail}`;
+    });
+
+    // Projects
+    document.querySelector('#projects .kicker').textContent = t.k_projects;
+    document.querySelector('#projects h2').innerHTML = t.t_projects;
+    const cards = document.querySelectorAll('.projects-grid .card');
+    const pData = [t.p1, t.p2, t.p3, t.p4, t.p5, t.p6];
+    cards.forEach((card, i) => {
+      if(!pData[i]) return;
+      card.querySelector('h3').textContent = pData[i][0];
+      card.querySelector('p').textContent = pData[i][1];
+    });
+
+    // Calculateur
+    document.querySelector('#devis .kicker').textContent = t.k_devis;
+    document.querySelector('#devis h2').innerHTML = t.t_devis;
+    const calcSteps = document.querySelectorAll('.calc-step-label');
+    if(calcSteps[0]) calcSteps[0].innerHTML = `<span class="calc-num">1</span> ${t.calc_q1}`;
+    if(calcSteps[1]) calcSteps[1].innerHTML = `<span class="calc-num">2</span> ${t.calc_q2}`;
+    if(calcSteps[2]) calcSteps[2].innerHTML = `<span class="calc-num">3</span> ${t.calc_q3}`;
+    if(calcSteps[3]) calcSteps[3].innerHTML = `<span class="calc-num">4</span> ${t.calc_q4}`;
+    const calcOpts = document.querySelectorAll('.calc-opt-inner span');
+    const allOpts = [...t.calc_opts1, ...t.calc_opts2, ...t.calc_opts3, ...t.calc_opts4];
+    calcOpts.forEach((el, i) => { if(allOpts[i]) el.textContent = allOpts[i]; });
+    document.querySelector('.calc-result-label').textContent = t.calc_label;
+    document.querySelector('.calc-result-note').textContent = t.calc_note;
+    const calcEmpty = document.querySelector('.calc-recap-empty');
+    if(calcEmpty) calcEmpty.textContent = t.calc_empty;
+    document.querySelector('.calc-wa-btn').innerHTML = `<i class="fab fa-whatsapp"></i> ${t.calc_btn}`;
+
+    // Témoignages
+    document.querySelector('#testimonials .kicker').textContent = t.k_testi;
+    document.querySelector('#testimonials h2').innerHTML = t.t_testi;
+    const tcards = document.querySelectorAll('.tcard');
+    const testiData = [t.testi1, t.testi2, t.testi3];
+    tcards.forEach((card, i) => {
+      if(!testiData[i]) return;
+      card.querySelector('.tcard-text').textContent = testiData[i][0];
+      card.querySelector('.tcard-role').textContent = testiData[i][1];
+    });
+
+    // FAQ
+    document.querySelector('#faq .kicker').textContent = t.k_faq;
+    document.querySelector('#faq h2').textContent = t.t_faq;
+    const faqQs = document.querySelectorAll('.faq-q');
+    const faqAs = document.querySelectorAll('.faq-a-inner');
+    faqQs.forEach((el, i) => {
+      if(!t.faq_q[i]) return;
+      el.innerHTML = `${t.faq_q[i]} <i class="fas fa-chevron-down"></i>`;
+    });
+    faqAs.forEach((el, i) => { if(t.faq_a[i]) el.textContent = t.faq_a[i]; });
+
+    // Contact
+    document.querySelector('#contact .kicker').textContent = t.k_contact;
+    document.querySelector('#contact h2').innerHTML = t.t_contact;
+    document.querySelector('.contact-left h3').textContent = t.contact_title;
+    document.querySelector('.contact-left p').textContent = t.contact_sub;
+    document.querySelector('label[for="cf-name"]').textContent = t.f_name;
+    document.querySelector('label[for="cf-email"]').textContent = t.f_email;
+    document.querySelector('label[for="cf-message"]').textContent = t.f_msg;
+    document.getElementById('cf-name').placeholder = t.f_ph_name;
+    document.getElementById('cf-email').placeholder = t.f_ph_email;
+    document.getElementById('cf-message').placeholder = t.f_ph_msg;
+    document.getElementById('cf-btn-text').textContent = t.f_btn;
   }
 
-  btn.addEventListener('click', () => {
-    lang = lang === 'fr' ? 'en' : 'fr';
-    btn.textContent = lang.toUpperCase();
-    applyLang(translations[lang]);
-  });
-})();
+ btn.addEventListener('click', () => {
+      lang = lang === 'fr' ? 'en' : 'fr';
+      btn.textContent = lang.toUpperCase();
+      applyLang(T[lang]);
+    });
+})();   // ← ferme l'IIFE du toggle de langue
 </script>
 </body>
 </html>

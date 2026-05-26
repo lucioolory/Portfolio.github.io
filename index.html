@@ -475,7 +475,28 @@ body.light-mode .footer-copy{color:#888899;}
 /* Back to top */
 body.light-mode #back-top{background:#ffffff;border-color:rgba(0,0,0,.1);color:#555570;}
 body.light-mode .wa-float-label{background:#ffffff;color:#1a1a2e;}
-
+/* BOUTON CONNAITRE UN PEU PLUS */
+.btn-know-more {
+  display: inline-flex; align-items: center; gap: 12px;
+  margin-top: 24px; padding: 14px 24px;
+  background: linear-gradient(135deg, rgba(255,107,26,0.12), rgba(255,170,96,0.08));
+  border: 1px solid var(--c-border-hi);
+  border-radius: 50px; color: var(--c-accent2);
+  font-family: var(--font-body); font-size: 14px; font-weight: 600;
+  transition: all .3s var(--ease-spring);
+  position: relative; overflow: hidden;
+}
+.btn-know-more::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,107,26,0.2), rgba(255,170,96,0.15));
+  opacity: 0; transition: opacity .3s;
+}
+.btn-know-more:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(255,107,26,0.3); border-color: var(--c-accent); color: white; }
+.btn-know-more:hover::before { opacity: 1; }
+.btn-know-more-icon { width: 32px; height: 32px; border-radius: 50%; background: rgba(255,107,26,0.15); display: flex; align-items: center; justify-content: center; font-size: 14px; transition: transform .3s var(--ease-spring); }
+.btn-know-more:hover .btn-know-more-icon { transform: scale(1.15); background: rgba(255,107,26,0.3); }
+.btn-know-more-arrow { font-size: 12px; opacity: 0.6; transition: transform .3s var(--ease-spring), opacity .3s; }
+.btn-know-more:hover .btn-know-more-arrow { transform: translateX(5px); opacity: 1; }
 </style>
 </head>
 <body>
@@ -538,7 +559,11 @@ body.light-mode .wa-float-label{background:#ffffff;color:#1a1a2e;}
       <p>Je suis <strong>Lucio OLORY</strong>, étudiant en Systèmes Informatiques et Logiciels à l'Université de Dangbéklounon. Passionné de mathématiques depuis tout petit — merci papa — et tombé amoureux du code depuis.</p>
       <p>Mon parcours m'a permis de maîtriser plusieurs langages et technologies, du développement web aux applications desktop, en passant par le mobile. J'aime construire des solutions qui combinent esthétique et fonctionnalité.</p>
       <div class="highlight-tag"><i class="fas fa-map-marker-alt"></i> Porto-Novo, Bénin · Disponible</div>
-      <button class="btn btn-ghost" style="margin-top:20px" onclick="openAboutModal()"><i class="fas fa-user-circle"></i> En savoir plus</button>
+      <button class="btn-know-more" onclick="openAboutModal()">
+        <span class="btn-know-more-icon"><i class="fas fa-user-circle"></i></span>
+        <span>Connaître un peu plus</span>
+        <span class="btn-know-more-arrow"><i class="fas fa-arrow-right"></i></span>
+      </button>
     </div>
     <div class="about-cards reveal">
       <div class="acard"><div class="acard-num">6+</div><div class="acard-label">Projets réalisés</div></div>
@@ -1343,7 +1368,7 @@ window.addEventListener('load', () => {
       faq_q:['Comment se passe une commande ?','Comment se fait le paiement ?','Quels sont vos délais de livraison ?','Travaillez-vous à distance ?','Que se passe-t-il après la livraison ?','Les prix sont-ils négociables ?'],
       faq_a:["C'est simple : vous me contactez sur WhatsApp, on discute de votre projet, je vous envoie un devis gratuit. Une fois validé, je commence le développement et vous livrez en temps et en heure. Pas de surprise.","Le paiement se fait via Mobile Money (MTN ou Moov) en deux fois : 50% à la commande pour démarrer le travail, et 50% à la livraison quand vous êtes satisfait.","Cela dépend du projet : un CV en ligne c'est 1 à 3 jours, un site vitrine 3 à 7 jours, une application de gestion 7 à 21 jours selon la complexité.","Oui, je travaille 100% à distance. Toute la communication se fait par WhatsApp, et je livre les fichiers en ligne. Vous n'avez pas besoin de vous déplacer.","Je vous accompagne après la livraison avec une période de support incluse (1 à 2 mois selon le service). Les petites modifications sont prises en charge sans frais.","Oui ! Les tarifs affichés sont des prix de base. Si vous avez un budget précis, contactez-moi et on trouvera une solution adaptée ensemble."],
       // Contact
-      btn_ensavoir:'En savoir plus',
+      btn_ensavoir:'Connaître un peu plus',
       modal_name:'Développeur Web & Desktop',
       modal_p1:"J'ai 20 ans et je suis passionné de technologie depuis aussi loin que je me souvienne. Après avoir découvert la programmation, je n'ai plus jamais regardé en arrière.",
       modal_p2:"Étudiant en Systèmes Informatiques et Logiciels, je passe mes journées à apprendre, coder et construire des choses utiles. Mon environnement de travail ? Un laptop, du café, et beaucoup de curiosité.",
@@ -1398,7 +1423,7 @@ window.addEventListener('load', () => {
       k_faq:'Common questions', t_faq:'FAQ',
       faq_q:['How does an order work?','How is payment made?','What are your delivery times?','Do you work remotely?','What happens after delivery?','Are prices negotiable?'],
       faq_a:["Simple: contact me on WhatsApp, we discuss your project, I send you a free quote. Once validated, I start development and deliver on time. No surprises.","Payment is via Mobile Money (MTN or Moov) in two installments: 50% when ordering to start work, and 50% on delivery when you're satisfied.","It depends on the project: an online CV takes 1 to 3 days, a website 3 to 7 days, a management app 7 to 21 days depending on complexity.","Yes, I work 100% remotely. All communication is via WhatsApp, and I deliver files online. You don't need to travel.","I support you after delivery with an included support period (1 to 2 months depending on the service). Minor modifications are handled at no extra cost.","Yes! The displayed prices are base prices. If you have a specific budget, contact me and we'll find a suitable solution together."],
-      btn_ensavoir:'Learn more',
+      btn_ensavoir:'Get to know me more',
       modal_name:'Web & Desktop Developer',
       modal_p1:"I'm 20 years old and have been passionate about technology for as long as I can remember. After discovering programming, I never looked back.",
       modal_p2:"Studying Software & Information Systems, I spend my days learning, coding and building useful things. My work setup? A laptop, coffee, and a lot of curiosity.",
@@ -1524,8 +1549,8 @@ window.addEventListener('load', () => {
     document.getElementById('cf-message').placeholder = t.f_ph_msg;
     document.getElementById('cf-btn-text').textContent = t.f_btn;
     // Bouton En savoir plus
-    const btnEnsavoir = document.querySelector('.about-body .btn-ghost');
-    if(btnEnsavoir) btnEnsavoir.innerHTML = `<i class="fas fa-user-circle"></i> ${t.btn_ensavoir}`;
+    const btnEnsavoir = document.querySelector('.btn-know-more');
+    if(btnEnsavoir) btnEnsavoir.innerHTML = `<span class="btn-know-more-icon"><i class="fas fa-user-circle"></i></span><span>${t.btn_ensavoir}</span><span class="btn-know-more-arrow"><i class="fas fa-arrow-right"></i></span>`;
 
     // Contenu modal En savoir plus
     const modalParas = document.querySelectorAll('#about-modal-overlay p');

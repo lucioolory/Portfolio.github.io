@@ -538,6 +538,7 @@ body.light-mode .wa-float-label{background:#ffffff;color:#1a1a2e;}
       <p>Je suis <strong>Lucio OLORY</strong>, étudiant en Systèmes Informatiques et Logiciels à l'Université de Dangbéklounon. Passionné de mathématiques depuis tout petit — merci papa — et tombé amoureux du code depuis.</p>
       <p>Mon parcours m'a permis de maîtriser plusieurs langages et technologies, du développement web aux applications desktop, en passant par le mobile. J'aime construire des solutions qui combinent esthétique et fonctionnalité.</p>
       <div class="highlight-tag"><i class="fas fa-map-marker-alt"></i> Porto-Novo, Bénin · Disponible</div>
+      <button class="btn btn-ghost" style="margin-top:20px" onclick="openAboutModal()"><i class="fas fa-user-circle"></i> En savoir plus</button>
     </div>
     <div class="about-cards reveal">
       <div class="acard"><div class="acard-num">6+</div><div class="acard-label">Projets réalisés</div></div>
@@ -1007,106 +1008,92 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 // MODALS SERVICES
 const services = {
   vitrine: {
-    icon: 'fas fa-globe',
-    title: 'Site Web Vitrine',
-    desc: 'Un site web professionnel et moderne pour présenter votre activité, attirer de nouveaux clients et renforcer votre crédibilité en ligne.',
-    includes: [
-      'Design personnalisé selon vos couleurs et logo',
-      'Site responsive (mobile, tablette, ordinateur)',
-      'Jusqu\'à 5 pages (Accueil, Services, À propos, Contact...)',
-      'Formulaire de contact fonctionnel',
-      'Optimisation SEO de base (visible sur Google)',
-      'Mise en ligne sur votre domaine',
-      '1 mois de support après livraison',
-    ],
-    delay: '⏱ Délai de livraison : 3 à 7 jours',
-    price: '15 000 FCFA',
-    note: 'Prix de base · Devis gratuit selon vos besoins',
-    wa: 'Bonjour%20Lucio%2C%20je%20veux%20un%20site%20vitrine.'
+    fr: {
+      icon: 'fas fa-globe', title: 'Site Web Vitrine',
+      desc: 'Un site web professionnel et moderne pour présenter votre activité, attirer de nouveaux clients et renforcer votre crédibilité en ligne.',
+      includes: ['Design personnalisé selon vos couleurs et logo','Site responsive (mobile, tablette, ordinateur)',"Jusqu'à 5 pages (Accueil, Services, À propos, Contact...)","Formulaire de contact fonctionnel",'Optimisation SEO de base (visible sur Google)','Mise en ligne sur votre domaine','1 mois de support après livraison'],
+      delay: '⏱ Délai de livraison : 3 à 7 jours', price: '15 000 FCFA', note: 'Prix de base · Devis gratuit selon vos besoins', wa: 'Bonjour%20Lucio%2C%20je%20veux%20un%20site%20vitrine.'
+    },
+    en: {
+      icon: 'fas fa-globe', title: 'Website',
+      desc: 'A professional and modern website to showcase your business, attract new clients and strengthen your online credibility.',
+      includes: ['Custom design matching your colors and logo','Responsive site (mobile, tablet, desktop)','Up to 5 pages (Home, Services, About, Contact...)','Functional contact form','Basic SEO optimization (visible on Google)','Deployment on your domain','1 month of support after delivery'],
+      delay: '⏱ Delivery time: 3 to 7 days', price: '15 000 FCFA', note: 'Base price · Free quote based on your needs', wa: 'Hello%20Lucio%2C%20I%20want%20a%20website.'
+    }
   },
   gestion: {
-    icon: 'fas fa-database',
-    title: 'Application de Gestion',
-    desc: 'Un logiciel sur mesure pour automatiser et simplifier la gestion interne de votre entreprise, école, ou boutique.',
-    includes: [
-      'Analyse de vos besoins avant développement',
-      'Interface moderne et facile à utiliser',
-      'Gestion : stocks, clients, étudiants, réservations...',
-      'Base de données sécurisée (MySQL / PostgreSQL)',
-      'Génération de rapports et factures PDF',
-      'Formation à l\'utilisation incluse',
-      '2 mois de support après livraison',
-    ],
-    delay: '⏱ Délai de livraison : 7 à 21 jours selon la complexité',
-    price: '25 000 FCFA',
-    note: 'Prix de base · Devis personnalisé gratuit',
-    wa: 'Bonjour%20Lucio%2C%20je%20veux%20une%20application%20de%20gestion.'
+    fr: {
+      icon: 'fas fa-database', title: 'Application de Gestion',
+      desc: 'Un logiciel sur mesure pour automatiser et simplifier la gestion interne de votre entreprise, école, ou boutique.',
+      includes: ['Analyse de vos besoins avant développement','Interface moderne et facile à utiliser','Gestion : stocks, clients, étudiants, réservations...','Base de données sécurisée (MySQL / PostgreSQL)','Génération de rapports et factures PDF','Formation à l\'utilisation incluse','2 mois de support après livraison'],
+      delay: '⏱ Délai de livraison : 7 à 21 jours selon la complexité', price: '25 000 FCFA', note: 'Prix de base · Devis personnalisé gratuit', wa: 'Bonjour%20Lucio%2C%20je%20veux%20une%20application%20de%20gestion.'
+    },
+    en: {
+      icon: 'fas fa-database', title: 'Management App',
+      desc: 'Custom software to automate and simplify the internal management of your business, school, or shop.',
+      includes: ['Needs analysis before development','Modern and easy-to-use interface','Management: stock, clients, students, bookings...','Secure database (MySQL / PostgreSQL)','PDF report and invoice generation','Usage training included','2 months of support after delivery'],
+      delay: '⏱ Delivery time: 7 to 21 days depending on complexity', price: '25 000 FCFA', note: 'Base price · Free custom quote', wa: 'Hello%20Lucio%2C%20I%20want%20a%20management%20app.'
+    }
   },
   cv: {
-    icon: 'fas fa-id-card',
-    title: 'CV en Ligne',
-    desc: 'Un portfolio ou CV web élégant pour vous démarquer des autres candidats et impressionner les recruteurs dès le premier regard.',
-    includes: [
-      'Design moderne et professionnel',
-      'Page unique responsive (mobile-friendly)',
-      'Vos compétences, expériences et projets mis en valeur',
-      'Bouton téléchargement CV PDF',
-      'Liens vers vos réseaux (LinkedIn, GitHub...)',
-      'Formulaire de contact intégré',
-      'Mise en ligne sur GitHub Pages (gratuit)',
-    ],
-    delay: '⏱ Délai de livraison : 1 à 3 jours',
-    price: '8 000 FCFA',
-    note: 'Prix fixe · Modifications incluses',
-    wa: 'Bonjour%20Lucio%2C%20je%20veux%20un%20CV%20en%20ligne.'
+    fr: {
+      icon: 'fas fa-id-card', title: 'CV en Ligne',
+      desc: 'Un portfolio ou CV web élégant pour vous démarquer des autres candidats et impressionner les recruteurs dès le premier regard.',
+      includes: ['Design moderne et professionnel','Page unique responsive (mobile-friendly)','Vos compétences, expériences et projets mis en valeur','Bouton téléchargement CV PDF','Liens vers vos réseaux (LinkedIn, GitHub...)','Formulaire de contact intégré','Mise en ligne sur GitHub Pages (gratuit)'],
+      delay: '⏱ Délai de livraison : 1 à 3 jours', price: '8 000 FCFA', note: 'Prix fixe · Modifications incluses', wa: 'Bonjour%20Lucio%2C%20je%20veux%20un%20CV%20en%20ligne.'
+    },
+    en: {
+      icon: 'fas fa-id-card', title: 'Online CV',
+      desc: 'An elegant web portfolio or CV to stand out from other candidates and impress recruiters at first glance.',
+      includes: ['Modern and professional design','Single responsive page (mobile-friendly)','Your skills, experience and projects highlighted','PDF CV download button','Links to your networks (LinkedIn, GitHub...)','Integrated contact form','Deployment on GitHub Pages (free)'],
+      delay: '⏱ Delivery time: 1 to 3 days', price: '8 000 FCFA', note: 'Fixed price · Revisions included', wa: 'Hello%20Lucio%2C%20I%20want%20an%20online%20CV.'
+    }
   },
   retouche: {
-    icon: 'fas fa-paint-brush',
-    title: 'Retouche & Amélioration',
-    desc: 'Votre site existe déjà mais il est vieux, lent ou peu attractif ? Je le modernise, le corrige et l\'optimise pour vous.',
-    includes: [
-      'Audit complet de votre site existant',
-      'Correction des bugs et erreurs d\'affichage',
-      'Modernisation du design (couleurs, typographie...)',
-      'Optimisation de la vitesse de chargement',
-      'Adaptation mobile si nécessaire',
-      'Ajout de nouvelles sections ou fonctionnalités',
-      '1 mois de support après livraison',
-    ],
-    delay: '⏱ Délai de livraison : 2 à 5 jours selon l\'état du site',
-    price: '8 000 FCFA',
-    note: 'Prix de base · Devis après audit gratuit',
-    wa: 'Bonjour%20Lucio%2C%20je%20veux%20am%C3%A9liorer%20mon%20site.'
+    fr: {
+      icon: 'fas fa-paint-brush', title: 'Retouche & Amélioration',
+      desc: "Votre site existe déjà mais il est vieux, lent ou peu attractif ? Je le modernise, le corrige et l'optimise pour vous.",
+      includes: ['Audit complet de votre site existant','Correction des bugs et erreurs d\'affichage','Modernisation du design (couleurs, typographie...)','Optimisation de la vitesse de chargement','Adaptation mobile si nécessaire','Ajout de nouvelles sections ou fonctionnalités','1 mois de support après livraison'],
+      delay: "⏱ Délai de livraison : 2 à 5 jours selon l'état du site", price: '8 000 FCFA', note: 'Prix de base · Devis après audit gratuit', wa: 'Bonjour%20Lucio%2C%20je%20veux%20am%C3%A9liorer%20mon%20site.'
+    },
+    en: {
+      icon: 'fas fa-paint-brush', title: 'Redesign & Fix',
+      desc: "Your site already exists but it's old, slow or unattractive? I'll modernize, fix and optimize it for you.",
+      includes: ['Full audit of your existing site','Bug and display error fixes','Design modernization (colors, typography...)','Loading speed optimization','Mobile adaptation if needed','Addition of new sections or features','1 month of support after delivery'],
+      delay: '⏱ Delivery time: 2 to 5 days depending on the site condition', price: '8 000 FCFA', note: 'Base price · Free quote after audit', wa: 'Hello%20Lucio%2C%20I%20want%20to%20improve%20my%20site.'
+    }
   }
 };
+
+let currentLang = 'fr';
 
 function openModal(id) {
   const s = services[id];
   if (!s) return;
+  const d = s[currentLang] || s.fr;
   document.getElementById('modal-content').innerHTML = `
-    <div class="modal-icon"><i class="${s.icon}"></i></div>
-    <div class="modal-title">${s.title}</div>
-    <p class="modal-desc">${s.desc}</p>
+    <div class="modal-icon"><i class="${d.icon}"></i></div>
+    <div class="modal-title">${d.title}</div>
+    <p class="modal-desc">${d.desc}</p>
     <div class="modal-includes">
-      <h4>Ce qui est inclus</h4>
-      ${s.includes.map(item => `<div class="modal-item"><i class="fas fa-check-circle"></i>${item}</div>`).join('')}
+      <h4>${currentLang === 'fr' ? 'Ce qui est inclus' : "What's included"}</h4>
+      ${d.includes.map(item => `<div class="modal-item"><i class="fas fa-check-circle"></i>${item}</div>`).join('')}
     </div>
-    <div class="modal-delay">${s.delay}</div>
+    <div class="modal-delay">${d.delay}</div>
     <div class="modal-price-block">
       <div>
-        <div class="modal-price-label">Tarif</div>
-        <div class="modal-price-note">${s.note}</div>
+        <div class="modal-price-label">${currentLang === 'fr' ? 'Tarif' : 'Price'}</div>
+        <div class="modal-price-note">${d.note}</div>
       </div>
-      <div class="modal-price-val">${s.price}</div>
+      <div class="modal-price-val">${d.price}</div>
     </div>
-    <a href="https://wa.me/22944187969?text=${s.wa}" target="_blank" class="btn btn-fill modal-btn">
-      <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
+    <a href="https://wa.me/22944187969?text=${d.wa}" target="_blank" class="btn btn-fill modal-btn">
+      <i class="fab fa-whatsapp"></i> ${currentLang === 'fr' ? 'Commander sur WhatsApp' : 'Order on WhatsApp'}
     </a>
   `;
   document.getElementById('modal-overlay').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
-
 function closeModal() {
   document.getElementById('modal-overlay').classList.remove('active');
   document.body.style.overflow = '';
@@ -1356,6 +1343,11 @@ window.addEventListener('load', () => {
       faq_q:['Comment se passe une commande ?','Comment se fait le paiement ?','Quels sont vos délais de livraison ?','Travaillez-vous à distance ?','Que se passe-t-il après la livraison ?','Les prix sont-ils négociables ?'],
       faq_a:["C'est simple : vous me contactez sur WhatsApp, on discute de votre projet, je vous envoie un devis gratuit. Une fois validé, je commence le développement et vous livrez en temps et en heure. Pas de surprise.","Le paiement se fait via Mobile Money (MTN ou Moov) en deux fois : 50% à la commande pour démarrer le travail, et 50% à la livraison quand vous êtes satisfait.","Cela dépend du projet : un CV en ligne c'est 1 à 3 jours, un site vitrine 3 à 7 jours, une application de gestion 7 à 21 jours selon la complexité.","Oui, je travaille 100% à distance. Toute la communication se fait par WhatsApp, et je livre les fichiers en ligne. Vous n'avez pas besoin de vous déplacer.","Je vous accompagne après la livraison avec une période de support incluse (1 à 2 mois selon le service). Les petites modifications sont prises en charge sans frais.","Oui ! Les tarifs affichés sont des prix de base. Si vous avez un budget précis, contactez-moi et on trouvera une solution adaptée ensemble."],
       // Contact
+      btn_ensavoir:'En savoir plus',
+      modal_name:'Développeur Web & Desktop',
+      modal_p1:"J'ai 20 ans et je suis passionné de technologie depuis aussi loin que je me souvienne. Après avoir découvert la programmation, je n'ai plus jamais regardé en arrière.",
+      modal_p2:"Étudiant en Systèmes Informatiques et Logiciels, je passe mes journées à apprendre, coder et construire des choses utiles. Mon environnement de travail ? Un laptop, du café, et beaucoup de curiosité.",
+      modal_p3:"En dehors du code, j'aime les maths, résoudre des problèmes complexes et explorer de nouvelles technologies. Je crois que <strong style=\"color:white\">chaque bug est une leçon</strong> — même si sur le moment c'est moins évident 😄",
       k_contact:'Me rejoindre', t_contact:'Contactez-<br>moi',
       contact_title:'Discutons de votre projet.',
       contact_sub:'Vous avez un projet web, une appli ou un logiciel en tête ? Contactez-moi sur WhatsApp pour un devis gratuit. Réponse rapide garantie 🚀',
@@ -1406,6 +1398,11 @@ window.addEventListener('load', () => {
       k_faq:'Common questions', t_faq:'FAQ',
       faq_q:['How does an order work?','How is payment made?','What are your delivery times?','Do you work remotely?','What happens after delivery?','Are prices negotiable?'],
       faq_a:["Simple: contact me on WhatsApp, we discuss your project, I send you a free quote. Once validated, I start development and deliver on time. No surprises.","Payment is via Mobile Money (MTN or Moov) in two installments: 50% when ordering to start work, and 50% on delivery when you're satisfied.","It depends on the project: an online CV takes 1 to 3 days, a website 3 to 7 days, a management app 7 to 21 days depending on complexity.","Yes, I work 100% remotely. All communication is via WhatsApp, and I deliver files online. You don't need to travel.","I support you after delivery with an included support period (1 to 2 months depending on the service). Minor modifications are handled at no extra cost.","Yes! The displayed prices are base prices. If you have a specific budget, contact me and we'll find a suitable solution together."],
+      btn_ensavoir:'Learn more',
+      modal_name:'Web & Desktop Developer',
+      modal_p1:"I'm 20 years old and have been passionate about technology for as long as I can remember. After discovering programming, I never looked back.",
+      modal_p2:"Studying Software & Information Systems, I spend my days learning, coding and building useful things. My work setup? A laptop, coffee, and a lot of curiosity.",
+      modal_p3:"Outside of code, I love math, solving complex problems and exploring new technologies. I believe <strong style=\"color:white\">every bug is a lesson</strong> — even if it doesn't feel that way in the moment 😄",
       k_contact:'Get in touch', t_contact:'Contact<br>me',
       contact_title:'Let\'s discuss your project.',
       contact_sub:'Do you have a web project, an app or software in mind? Contact me on WhatsApp for a free quote. Fast response guaranteed 🚀',
@@ -1526,14 +1523,81 @@ window.addEventListener('load', () => {
     document.getElementById('cf-email').placeholder = t.f_ph_email;
     document.getElementById('cf-message').placeholder = t.f_ph_msg;
     document.getElementById('cf-btn-text').textContent = t.f_btn;
+    // Bouton En savoir plus
+    const btnEnsavoir = document.querySelector('.about-body .btn-ghost');
+    if(btnEnsavoir) btnEnsavoir.innerHTML = `<i class="fas fa-user-circle"></i> ${t.btn_ensavoir}`;
+
+    // Contenu modal En savoir plus
+    const modalParas = document.querySelectorAll('#about-modal-overlay p');
+    if(modalParas[0]) modalParas[0].innerHTML = t.modal_p1;
+    if(modalParas[1]) modalParas[1].innerHTML = t.modal_p2;
+    if(modalParas[2]) modalParas[2].innerHTML = t.modal_p3;
+    const modalSubtitle = document.querySelector('#about-modal-overlay [style*="font-family:var(--font-mono)"]');
+    if(modalSubtitle) modalSubtitle.textContent = t.modal_name;
   }
 
  btn.addEventListener('click', () => {
       lang = lang === 'fr' ? 'en' : 'fr';
+      currentLang = lang;
       btn.textContent = lang.toUpperCase();
       applyLang(T[lang]);
     });
 })();   // ← ferme l'IIFE du toggle de langue
+// MODAL EN SAVOIR PLUS
+function openAboutModal() {
+  const overlay = document.getElementById('about-modal-overlay');
+  overlay.style.pointerEvents = 'all';
+  overlay.style.opacity = '1';
+  overlay.querySelector('div').style.transform = 'translateY(0)';
+  document.body.style.overflow = 'hidden';
+}
+function closeAboutModal() {
+  const overlay = document.getElementById('about-modal-overlay');
+  overlay.style.opacity = '0';
+  overlay.style.pointerEvents = 'none';
+  overlay.querySelector('div').style.transform = 'translateY(30px)';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAboutModal(); });
 </script>
+<!-- MODAL EN SAVOIR PLUS -->
+<div id="about-modal-overlay" onclick="closeAboutModal()" style="position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.85);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;padding:20px;">
+  <div onclick="event.stopPropagation()" style="background:var(--c-surface);border:1px solid var(--c-border-hi);border-radius:var(--radius-lg);padding:40px;max-width:600px;width:100%;position:relative;transform:translateY(30px);transition:transform .35s var(--ease-spring);max-height:90vh;overflow-y:auto;">
+    <button onclick="closeAboutModal()" style="position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid var(--c-border);color:var(--c-muted);font-size:14px;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s;" onmouseenter="this.style.color='var(--c-accent)'" onmouseleave="this.style.color='var(--c-muted)'"><i class="fas fa-times"></i></button>
+
+    <!-- PHOTO -->
+    <div style="display:flex;justify-content:center;margin-bottom:32px;">
+      <div style="position:relative;width:240px;height:290px;">
+        <img src="photo.jpeg" alt="Lucio OLORY" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-lg);display:block;position:relative;z-index:2;" onerror="this.style.display='none';document.getElementById('photo-fallback').style.display='flex'">
+        <div id="photo-fallback" style="display:none;width:100%;height:100%;border-radius:var(--radius-lg);background:var(--c-surface2);border:1px solid var(--c-border);align-items:center;justify-content:center;font-size:48px;color:var(--c-muted);"><i class="fas fa-user"></i></div>
+        <div style="position:absolute;inset:-8px;border:2px solid var(--c-accent);border-radius:calc(var(--radius-lg) + 4px);opacity:.3;z-index:1;"></div>
+        <div style="position:absolute;bottom:-14px;right:-14px;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,26,.25),transparent 70%);z-index:0;"></div>
+      </div>
+    </div>
+
+    <!-- DESCRIPTION -->
+    <div style="text-align:center;margin-bottom:24px;">
+      <div style="font-family:var(--font-display);font-size:28px;color:white;letter-spacing:.5px;margin-bottom:6px;">Lucio OLORY</div>
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--c-accent);letter-spacing:2px;text-transform:uppercase;">Développeur Web & Desktop</div>
+    </div>
+
+    <div style="color:#8888a0;font-size:15px;line-height:1.85;margin-bottom:28px;display:flex;flex-direction:column;gap:16px;">
+      <p>J'ai 20 ans et je suis passionné de technologie depuis aussi loin que je me souvienne. Après avoir découvert la programmation, je n'ai plus jamais regardé en arrière.</p>
+      <p>Étudiant en Systèmes Informatiques et Logiciels, je passe mes journées à apprendre, coder et construire des choses utiles. Mon environnement de travail ? Un laptop, du café, et beaucoup de curiosité.</p>
+      <p>En dehors du code, j'aime les maths, résoudre des problèmes complexes et explorer de nouvelles technologies. Je crois que <strong style="color:white">chaque bug est une leçon</strong> — même si sur le moment c'est moins évident 😄</p>
+    </div>
+
+    <!-- RÉSEAUX -->
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <a href="https://snapchat.com/t/qGPRtn2q" target="_blank" rel="noopener" class="slink snapchat"><div class="slink-icon"><i class="fab fa-snapchat"></i></div>Snapchat</a>
+      <a href="https://wa.me/22944187969" target="_blank" rel="noopener" class="slink whatsapp"><div class="slink-icon"><i class="fab fa-whatsapp"></i></div>WhatsApp</a>
+      <a href="https://instagram.com/lucio_olory" target="_blank" rel="noopener" class="slink instagram"><div class="slink-icon"><i class="fab fa-instagram"></i></div>Instagram</a>
+      <a href="https://www.linkedin.com/in/lucio-olory-90213b40a/" target="_blank" rel="noopener" class="slink linkedin"><div class="slink-icon"><i class="fab fa-linkedin-in"></i></div>LinkedIn</a>
+    </div>
+
+  </div>
+</div>
 </body>
 </html>
+
+

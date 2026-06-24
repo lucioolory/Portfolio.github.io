@@ -746,6 +746,21 @@ body.light-mode .wa-float-label{background:#ffffff;color:#1a1a2e;}
         </div>
       </div>
     </div>
+    <div class="card reveal">
+      <div class="card-img-wrap">
+        <img src="image7.jpeg" alt="Site Anniversaire" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="card-img-placeholder" style="display:none"><i class="fas fa-birthday-cake"></i><span>Site Anniversaire</span></div>
+      </div>
+      <div class="card-content">
+        <div class="card-badge">HTML · CSS · JS · GSAP</div>
+        <h3>Site Anniversaire</h3>
+        <p>Expérience web narrative et interactive créée pour des proches — chapitres animés, musique d'ambiance, vidéo cinématique et messages secrets protégés par un code.</p>
+        <div class="card-footer">
+          <a href="https://lucioolory.github.io/anniversaire" target="_blank" rel="noopener" class="card-link">Voir le site <i class="fas fa-arrow-right"></i></a>
+          <a href="https://lucioolory.github.io/anniversaire" target="_blank" rel="noopener" class="card-arrow"><i class="fas fa-external-link-alt"></i></a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1349,6 +1364,7 @@ window.addEventListener('load', () => {
       p4:['Snake Game','Mini jeu développé en JavaScript vanilla avec gestion du score, des collisions et niveaux de difficulté progressifs.'],
       p5:['Space Shooter','Jeu de tir spatial avec gestion des collisions, vagues ennemies et score en temps réel, entièrement en JS natif.'],
       p6:['Calculateur IMC','Application web de calcul d\'IMC avec affichage dynamique, analyse du résultat et recommandations personnalisées.'],
+      p7:['Site Anniversaire','Expérience web narrative et interactive créée pour des proches — chapitres animés, musique d\'ambiance, vidéo cinématique et messages secrets protégés par un code.'],
       // Calculateur
       k_devis:'Estimez votre projet', t_devis:'Calculateur<br>de devis',
       calc_q1:'Quel type de projet ?', calc_q2:'Combien de pages / écrans ?', calc_q3:'Options supplémentaires', calc_q4:'Délai souhaité',
@@ -1408,6 +1424,7 @@ window.addEventListener('load', () => {
       p4:['Snake Game','Mini game built in vanilla JavaScript with score tracking, collision detection and progressive difficulty levels.'],
       p5:['Space Shooter','Space shooter game with collision detection, enemy waves and real-time score, entirely in native JS.'],
       p6:['BMI Calculator','Web app for BMI calculation with dynamic display, result analysis and personalized recommendations.'],
+      p7:['Birthday Website','Narrative and interactive web experience created for loved ones — animated chapters, ambient music, cinematic video and secret messages protected by a code.'],
       k_devis:'Estimate your project', t_devis:'Quote<br>calculator',
       calc_q1:'What type of project?', calc_q2:'How many pages / screens?', calc_q3:'Additional options', calc_q4:'Desired deadline',
       calc_opts1:['Website','Management App','Online CV','Redesign'],
@@ -1490,7 +1507,7 @@ window.addEventListener('load', () => {
     document.querySelector('#projects .kicker').textContent = t.k_projects;
     document.querySelector('#projects h2').innerHTML = t.t_projects;
     const cards = document.querySelectorAll('.projects-grid .card');
-    const pData = [t.p1, t.p2, t.p3, t.p4, t.p5, t.p6];
+    const pData = [t.p1, t.p2, t.p3, t.p4, t.p5, t.p6, t.p7];
     cards.forEach((card, i) => {
       if(!pData[i]) return;
       card.querySelector('h3').textContent = pData[i][0];
@@ -1624,5 +1641,3 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAboutMo
 </div>
 </body>
 </html>
-
-
